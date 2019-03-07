@@ -1,0 +1,12 @@
+{
+    "F1ileName":"TeamSetting.json",
+    "Token":"---your token----",
+    "ServerName":"---your server---",
+
+    "MainChannel":"General",
+    "Channel1":"General",
+    "Channel2":"Channel2",
+
+    "Group1":"General",
+    "Group2":"Group2"
+}
