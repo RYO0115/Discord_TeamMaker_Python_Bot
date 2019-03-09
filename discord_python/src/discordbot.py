@@ -11,6 +11,8 @@ BOT_NAME = "TeamMaker"
 SETTING_FILE_DIR = "../Setting/"
 SETTING_FILE_NAME = "TeamSetting.json"
 
+SRC_FILE_NAME = "discordbot.py"
+
 
 
 class INIT_SETTING():
@@ -26,7 +28,7 @@ class INIT_SETTING():
 
     def LoadSetting(self):
         dir = os.path.abspath(__file__)
-        settingDir = dir + SETTING_FILE_DIR
+        settingDir = dir[:-(len(SRC_FILE_NAME))] + SETTING_FILE_DIR
         settingFileName = settingDir + SETTING_FILE_NAME
 
         with open(settingFileName, "r") as fp:
