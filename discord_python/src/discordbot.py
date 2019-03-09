@@ -8,6 +8,7 @@ import os,sys
 
 
 BOT_NAME = "TeamMaker"
+SETTING_FILE_DIR = "../Setting/"
 SETTING_FILE_NAME = "TeamSetting.json"
 
 
@@ -25,8 +26,8 @@ class INIT_SETTING():
 
     def LoadSetting(self):
         dir = os.path.abspath(__file__)
-        settingDir = dir + "Setting"
-        settingFileName = settingDir + "/" + SETTING_FILE_NAME
+        settingDir = dir + SETTING_FILE_DIR
+        settingFileName = settingDir + SETTING_FILE_NAME
 
         with open(settingFileName, "r") as fp:
             jsonSettingList = json.load(fp)
