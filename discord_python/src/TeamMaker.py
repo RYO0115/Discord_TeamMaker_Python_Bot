@@ -6,9 +6,11 @@ import json
 import glob
 import os,sys
 
+import matplotlib.pyplot as plt
+
 
 BOT_NAME = "TeamMaker"
-SETTING_FILE_DIR = "../Setting/"
+SETTING_FILE_DIR = "/../Setting/"
 SETTING_FILE_NAME = "TeamSetting.json"
 
 SRC_FILE_NAME = "discordbot.py"
@@ -30,6 +32,7 @@ class INIT_SETTING():
         dir = os.path.abspath(__file__)
         settingDir = dir[:-(len(SRC_FILE_NAME))] + SETTING_FILE_DIR
         settingFileName = settingDir + SETTING_FILE_NAME
+        print(settingFileName)
 
         with open(settingFileName, "r") as fp:
             jsonSettingList = json.load(fp)
@@ -40,6 +43,7 @@ class INIT_SETTING():
             self.Channel2   = jsonSettingList["Channel2"]
             self.Group1     = jsonSettingList["Group1"]
             self.Group2     = jsonSettingList["Group2"]
+
 
 class SERVER_CONTROL():
     def __init__( self, client, serverName):
@@ -57,7 +61,6 @@ class SERVER_CONTROL():
     def GetChannelUsers(self, channelName):
         members = []
         for server in client.servers:
-            print(server.name)
             if server.name == self.serverName:
                 for channel in server.channels:
                     if channel.name == channelName:
@@ -146,11 +149,6 @@ class TEAM_MAKER():
             sendMessage += self.members[self.listIDs[i]].name
             sendMessage += "\n"
             print(len(sendMessage))
-
-            #if i < int(memberListSize/2):
-            #    client.move_member(members[listIDs[i]], channelList[Group1])
-            #else:
-            #    client.move_member(members[listIDs[i]], channelList[Group2])
         return sendMessage
 
     def PrintTeamMember(self, teamNum):
@@ -159,11 +157,8 @@ class TEAM_MAKER():
             return -1
 
 client = discord.Client() # 接続に使用するオブジェクト
-init    = INIT_SETTING()
-sc      = SERVER_CONTROL(client, init.serverName)
+initInfo    = INIT_SETTING()
 
-members, listIDs = sc.GetMemberAndListIDs(init.mainChannel)
-tm      = TEAM_MAKER(members, listIDs)
 
 # 起動時に通知してくれる処理
 @client.event
@@ -172,6 +167,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    sc      = SERVER_CONTROL(client, initInfo.serverName)
+    members, listIDs = sc.GetMemberAndListIDs(initInfo.mainChannel)
+    tm      = TEAM_MAKER(members, listIDs)
     sendMessage = ""
     if message.content.startswith('/neko'):
         reply = 'にゃーん'
@@ -186,6 +184,7 @@ async def on_message(message):
         #print(members)
 
         teamMemberNum = int(len(members)/2)
+        print(teamMemberNum)
 
         groupNum = 0
         groupNumLimit = 2
@@ -230,4 +229,4 @@ async def on_message(message):
     #if sendMessage != "":
     #    await client.send_message(message.channel, sendMessage)
 
-client.run(init.token)
+client.run(initInfo.token)
