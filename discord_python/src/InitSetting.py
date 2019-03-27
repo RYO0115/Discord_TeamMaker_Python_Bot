@@ -3,7 +3,7 @@ import json
 import glob
 import os,sys
 
-SETTING_FILE_DIR="/../Setting/"
+SETTING_FILE_DIR="../Setting/"
 SETTING_FILE_NAME="TeamSetting.json"
 BOT_NAME = "TeamMaker"
 
