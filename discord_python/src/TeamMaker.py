@@ -6,7 +6,6 @@ import json
 import glob
 import os,sys
 
-import matplotlib.pyplot as plt
 from ServerControl import *
 from InitSetting import *
 
