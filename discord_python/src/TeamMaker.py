@@ -151,8 +151,8 @@ async def on_message(message):
         await client.send_message(message.channel, reply)
     elif message.content.startswith("!"):
         tm      = TEAM_MAKER(members, listIDs)
-        tm.Main(message)
-        #await self.client.send_message(message.channel, sendMessage)
+        sendMessage = tm.Main(message)
+        await client.send_message(message.channel, sendMessage)
 
 
 client.run(initInfo.token)
