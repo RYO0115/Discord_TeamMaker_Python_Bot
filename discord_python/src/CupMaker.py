@@ -16,24 +16,24 @@ X_SPACE = 10
 sample_members = ["aaaa","bbbb","cccc","dddd","eeee","ffff"]
 sample_listIDs = [0,1,2,3,4,5]
 
-class MEMBER_CARD():
-    def __init__(self, name, id=0):
-        self.roundID = id
-        self.x = 0
-        self.y = 0
-        self.side = SIDE.right
-        self.available = 1
-
-    def Lost(self):
-        self.available = 0
-
-    def Win(self):
-        self.available = 1
-
-    def SetPosition(self, x, y, side=SIDE.right):
-        self.x = x
-        self.y = y
-        self.side = side
+#class MEMBER_CARD():
+#    def __init__(self, name, id=0):
+#        self.roundID = id
+#        self.x = 0
+#        self.y = 0
+#        self.side = SIDE.right
+#        self.available = 1
+#
+#    def Lost(self):
+#        self.available = 0
+#
+#    def Win(self):
+#        self.available = 1
+#
+#    def SetPosition(self, x, y, side=SIDE.right):
+#        self.x = x
+#        self.y = y
+#        self.side = side
 
 
 class ROUND():
@@ -138,20 +138,14 @@ class CUP_MAKER():
             stageNum -= 1
 
     def CreateTournamentGraph(self):
-        fig = plt.figure()
-        fig.suptitle("Tournament!!", fontsize=20, fontweight = "bold")
-        plt.tick_params(labelbottom=False,
-                        labelleft=False,
-                        labelright=False,
-                        labeltop=False)
-        ax = fig.add_subplot(1,1,1)
-        fig.subplots_adjust(top=0.85)
         for round in self.tournament:
             if len(round.childID) == 1:
                 x = round.X
                 y = round.y
                 #Draw Rectangle
         #plt.savefig("tournament.png")
+
+
 
     def DebugPrint(self):
         for i in range(len(self.tournament)):
@@ -162,6 +156,22 @@ class CUP_MAKER():
         for i in range(len(self.tournament)):
             print("Round %d, Stage %d, (x,y)=(%d,%d)" % (self.tournament[i].roundID,self.tournament[i].stageNum, self.tournament[i].x, self.tournament[i].y))
             print(self.tournament[i].memberList)
+
+class DRAW_SHAPE():
+    def __init__(self, fig, title):
+        self.fig = plt.figure()
+        self.fig.suptitle(title, fontsize=20, fontweight = "bold")
+        self.ax = self.fig.add_subplot(1,1,1)
+        self.fig.subplots_adjust(top=0.85)
+
+    def TickParam(self, top=False, bottom=False, right=False, left=False):
+        plt.tick_params(labelbottom=bottom,
+                        labelleft=left,
+                        labelright=right,
+                        labeltop=top)
+
+    def DrawRectangle(self, ax, x, y):
+
 
 if __name__=='__main__':
     tournament = CUP_MAKER(sample_members, sample_listIDs)

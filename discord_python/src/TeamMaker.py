@@ -153,6 +153,7 @@ async def on_message(message):
         tm      = TEAM_MAKER(members, listIDs)
         sendMessage = tm.Main(message)
         await client.send_message(message.channel, sendMessage)
+    elif
 
 
 client.run(initInfo.token)
