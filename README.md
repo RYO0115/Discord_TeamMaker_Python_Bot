@@ -1,11 +1,8 @@
 # TeamMaker
 Member List Maker Bot for Discord App
 
-編集中　/ Now Editing!
--------------------------
 
 - [TeamMaker](#teammaker)
-  - [編集中　/ Now Editing!](#%E7%B7%A8%E9%9B%86%E4%B8%AD--now-editing)
 - [TeamMakerとは / What is TeamMaker](#teammaker%E3%81%A8%E3%81%AF--what-is-teammaker)
 - [TeamMaker使用方法 / How to use TeamMaker](#teammaker%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95--how-to-use-teammaker)
   - [!start](#start)
