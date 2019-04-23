@@ -71,7 +71,6 @@ If you want to know more about it, please move to below!
 するとGeneralに参加したメンバを勝手に2つのチームに分けてくれます。
 ![start](image/start.png)
 
-~~~~ 随時追記 ~~~~~
 
 # TeamMaker追加方法 / How to invite TeamMaker
 ## 家庭用PC(Windows, Macにてインストールする場合)
