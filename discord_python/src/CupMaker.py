@@ -3,19 +3,17 @@ import json
 import glob
 import os,sys
 
-import matplotlib.pyplot as plt
 import enum
 import math
 
+from DrawImage import DRAW_SHAPE
+
 SIDE = enum.Enum("SIDE", "middle right left")
 FONT_SIZE = 15
-STARTPOS = [0,100]
-Y_SPACE = 10
-X_SPACE = 10
 
-sample_members = ["aaaa","bbbb","cccc","dddd","eeee","ffff"]
-sample_listIDs = [0,1,2,3,4,5]
-
+sample_members = ["クラウザー18世", "ファケナロート", "cccc", "dddd", "eeee", "ffff", "gggg", "hhhh", "iiii", "kkkk",
+"llll","mmmm"]
+#sample_listIDs = [0,1,2,3,4,5]
 #class MEMBER_CARD():
 #    def __init__(self, name, id=0):
 #        self.roundID = id
@@ -45,8 +43,12 @@ class ROUND():
         self.x = 0
         self.y = 0
         self.hasChildFlag = 0
-        self.SetMember(members)
         self.PositionSetFlag = 0
+        self.SetMember(members)
+        self.winner = -1
+        self.score = ""
+        self.player_id = -1
+        self.status = 0
 
 
     def SetMember(self, members):
@@ -66,9 +68,7 @@ class ROUND():
             self.childID = [roundID+1, roundID+2]
             child1Round.SetParentID(self.parentID)
             child2Round.SetParentID(self.parentID)
-            #return [child1Round, child2Round]
             return [child1Round, child2Round], roundID+2
-
         return [0], roundID
 
     def SetParentID(self, parentID):
@@ -79,13 +79,29 @@ class ROUND():
         self.y = y
         self.PositionSetFlag = 1
 
+    def SetWinnerID(self, id, score):
+        self.winner = id
+        self.score = score
+        print(self.roundID)
+
+    def SetPlayerID(self, id):
+        self.player_id = id
+
+    def GetWinnerID(self):
+        return(self.winner)
 
 
-class CUP_MAKER():
-    def __init__(self, members, listIDs):
+
+
+
+
+class TOURNAMENT_MAKER():
+    def __init__(self, members):
         self.members = members
-        self.listIDs = listIDs
         self.tournament = []
+        self.start_pos = [ 120, 100]
+        self.y_space = 40
+        self.x_space = 50
 
     def CreateNormalTournament(self):
         roundID = 0
@@ -95,11 +111,9 @@ class CUP_MAKER():
         self.largestStageNum = 0
 
         num = 0
-        #for i in range(len(self.tournament)):
         while len(self.tournament) > num :
             newRounds = [0]
             newRounds, roundID = self.tournament[num].CreateChildRound(roundID)
-            print(num)
             if len(newRounds) == 2:
                 self.tournament.extend(newRounds)
             if  self.largestStageNum <  self.tournament[num].roundID:
@@ -108,18 +122,30 @@ class CUP_MAKER():
 
         self.SetPosition()
 
+    def GetLargestStageNum(self):
+        return(self.largestStageNum)
+
     def SetFirstRoundPosition(self):
-        firstRound = []
+        dst_firstRound = []
         for round in self.tournament:
             if len(round.memberList) == 1:
-                firstRound.append(round.roundID)
+                dst_firstRound.append(round.roundID)
+        self.firstRound = []
 
-        for i in range(len(firstRound)):
-            self.tournament[firstRound[i]].SetPosition(STARTPOS[0], STARTPOS[1] - i * Y_SPACE)
+        for name in self.members:
+            for round_id in dst_firstRound:
+                if name == self.tournament[round_id].memberList[0]:
+                    self.firstRound.append(round_id)
+                    break
+
+        self.start_pos[1] = len(self.firstRound) * self.y_space
+        for i in range(len(self.firstRound)):
+            self.tournament[self.firstRound[i]].SetPosition(self.start_pos[0], self.start_pos[1] - i * self.y_space)
+            self.tournament[self.firstRound[i]].SetPlayerID(i)
 
     def CalcNewCenterPosition(self, roundID):
         childID = self.tournament[roundID].childID
-        self.tournament[roundID].x = max([self.tournament[childID[0]].x, self.tournament[childID[1]].x]) + X_SPACE
+        self.tournament[roundID].x = max([self.tournament[childID[0]].x, self.tournament[childID[1]].x]) + self.x_space
         y = 0
         for id in childID:
             y += self.tournament[id].y
@@ -137,16 +163,6 @@ class CUP_MAKER():
                         self.CalcNewCenterPosition(round)
             stageNum -= 1
 
-    def CreateTournamentGraph(self):
-        for round in self.tournament:
-            if len(round.childID) == 1:
-                x = round.X
-                y = round.y
-                #Draw Rectangle
-        #plt.savefig("tournament.png")
-
-
-
     def DebugPrint(self):
         for i in range(len(self.tournament)):
             print("Round %d, Stage %d" % (self.tournament[i].roundID,self.tournament[i].stageNum))
@@ -156,24 +172,45 @@ class CUP_MAKER():
         for i in range(len(self.tournament)):
             print("Round %d, Stage %d, (x,y)=(%d,%d)" % (self.tournament[i].roundID,self.tournament[i].stageNum, self.tournament[i].x, self.tournament[i].y))
             print(self.tournament[i].memberList)
+            print(self.tournament[i].childID)
 
-class DRAW_SHAPE():
-    def __init__(self, fig, title):
-        self.fig = plt.figure()
-        self.fig.suptitle(title, fontsize=20, fontweight = "bold")
-        self.ax = self.fig.add_subplot(1,1,1)
-        self.fig.subplots_adjust(top=0.85)
+    def SetMatchScore(self, roundID, winnerID, score):
+        self.tournament[roundID].SetWinnerID(self.firstRound[winnerID], score)
 
-    def TickParam(self, top=False, bottom=False, right=False, left=False):
-        plt.tick_params(labelbottom=bottom,
-                        labelleft=left,
-                        labelright=right,
-                        labeltop=top)
 
-    def DrawRectangle(self, ax, x, y):
+
 
 
 if __name__=='__main__':
-    tournament = CUP_MAKER(sample_members, sample_listIDs)
+    tournament = TOURNAMENT_MAKER(sample_members)
     tournament.CreateNormalTournament()
     tournament.DebugPrint2()
+
+    ds = DRAW_SHAPE("sample_tournament")
+    ds.SetFontFile("font_1_honokamarugo_1.1.ttf", size=12)
+    start_pos = [-100,0]
+    line_width = 3
+    stageNum = tournament.GetLargestStageNum() + 1
+    tournament.SetMatchScore(8, 1, "4-2")
+    tournament.SetMatchScore(3, 1, "4-2")
+    for t in tournament.tournament:
+        width = line_width
+        if t.winner != -1:
+            width = 2 * line_width
+        if t.stageNum == 0:
+            ds.DrawLine(t.x, t.y, 50 + t.x, t.y, width=width)
+
+        if len(t.childID) > 1:
+            for child in t.childID:
+                width = line_width
+                if t.winner != -1:
+                    for member in tournament.tournament[child].memberList:
+                        if member == tournament.tournament[t.winner].memberList[0]:
+                            width = 5
+                            ds.DrawText(t.x + 5, t.y - 20, t.score)
+                ds.DrawZigZagYtoX(t.x, t.y, 5+tournament.tournament[child].x, tournament.tournament[child].y, width=width)
+        if len(t.memberList)==1:
+            ds.DrawRectangle(start_pos[0]+t.x,start_pos[1]+t.y - 10)
+            ds.DrawText(start_pos[0]+t.x,start_pos[1]+t.y-5," " + str(t.player_id) + "." + t.memberList[0])
+    ds.SaveImage()
+
