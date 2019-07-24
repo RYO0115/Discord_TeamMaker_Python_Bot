@@ -2,5 +2,5 @@
 .vscode
 */__pycache__
 *.ttf
-.DS_Store
+*.DS_Store*
 *.pyc

@@ -33,7 +33,12 @@ class SERVER_CONTROL():
         return listIDs
 
     def GetMemberAndListIDs(self, channelName):
-        members = self.GetChannelUsers(channelName)
+        discord_members = self.GetChannelUsers(channelName)
+        members = []
+        for member in discord_members:
+            members.append(member.name)
+
+
         listIDs = self.GetListIDs(members)
 
         return members, listIDs
@@ -47,7 +52,7 @@ class SERVER_CONTROL():
                 continue
             for member in server.members:
                 if str(member.status) == 'online' and member.name != self.BOT_NAME:
-                    members.append(member)
+                    members.append(member.name)
             break
         return members
 

@@ -90,8 +90,12 @@ class DRAW_SHAPE():
         self.im.show()
 
     def SaveImage(self):
-        img = os.path.dirname(os.path.abspath(__file__)) + "/../../image/" + self.image_name + ".jpg"
-        self.im.save(img, quality=100)
+        img_dir = os.path.dirname(os.path.abspath(__file__)) + "/../../image/"
+        if os.path.exists(img_dir):
+            ret = 1
+        img = img_dir + self.image_name + ".jpg"
+        self.im.save(img)
+        return img
 
 if __name__=='__main__':
     ds = DRAW_SHAPE("sample")
