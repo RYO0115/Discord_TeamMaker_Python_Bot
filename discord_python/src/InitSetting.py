@@ -3,12 +3,10 @@ import json
 import glob
 import os,sys
 
-SETTING_FILE_DIR="../Setting/"
-SETTING_FILE_NAME="TeamSetting.json"
-BOT_NAME = "TeamMaker"
+
 
 class INIT_SETTING():
-    def __init__(self):
+    def __init__(self, setting_filename):
         self.token = ""
         self.serverName = ""
         self.mainChannel = ""
@@ -16,15 +14,18 @@ class INIT_SETTING():
         self.Channel2 = ""
         self.Group1 = ""
         self.Group2 = ""
-        self.LoadSetting()
-        self.SETTING_FILE_DIR=""
-        self.SETTING_FILE_NAME=""
+        self.setting_filename = setting_filename
         self.SRC_FILE_NAME=""
+        self.LoadSetting()
+        #self.SETTING_FILE_DIR=SETTING_FILE_DIR
+        #self.SETTING_FILE_NAME=SETTING_FILE_NAME
 
     def LoadSetting(self):
         dir = os.path.abspath(__file__)
-        settingDir = dir[:-len("initSetting.py")] + SETTING_FILE_DIR
-        settingFileName = settingDir + SETTING_FILE_NAME
+        #settingDir = dir[:-len("initSetting.py")] + self.SETTING_FILE_DIR
+        #settingFileName = settingDir + self.SETTING_FILE_NAME
+        settingFileName = dir[: - len("initSetting.py")]
+        settingFileName += self.setting_filename
         print(settingFileName)
 
         with open(settingFileName, "r") as fp:

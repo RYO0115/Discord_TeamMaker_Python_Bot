@@ -4,15 +4,17 @@ Member List Maker Bot for Discord App
 編集中　/ Now Editing!
 -------------------------
 
-- [TeamMaker](#teammaker)
-  - [編集中　/ Now Editing!](#%E7%B7%A8%E9%9B%86%E4%B8%AD--now-editing)
-- [TeamMakerとは / What is TeamMaker](#teammaker%E3%81%A8%E3%81%AF--what-is-teammaker)
-- [TeamMaker使用方法 / How to use TeamMaker](#teammaker%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95--how-to-use-teammaker)
+- [TeamMaker](#TeamMaker)
+  - [編集中　/ Now Editing!](#%E7%B7%A8%E9%9B%86%E4%B8%AD--Now-Editing)
+- [TeamMakerとは / What is TeamMaker](#TeamMaker%E3%81%A8%E3%81%AF--What-is-TeamMaker)
+- [TeamMaker使用方法 / How to use TeamMaker](#TeamMaker%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95--How-to-use-TeamMaker)
   - [!start](#start)
-- [TeamMaker追加方法 / How to invite TeamMaker](#teammaker%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95--how-to-invite-teammaker)
-  - [家庭用PC(Windows, Macにてインストールする場合)](#%E5%AE%B6%E5%BA%AD%E7%94%A8pcwindows-mac%E3%81%AB%E3%81%A6%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88)
-  - [常時稼働環境の作成 / How to run this bot with raspberry pi](#%E5%B8%B8%E6%99%82%E7%A8%BC%E5%83%8D%E7%92%B0%E5%A2%83%E3%81%AE%E4%BD%9C%E6%88%90--how-to-run-this-bot-with-raspberry-pi)
-- [TeamMaker全体構成 / Structure of TeamMaker](#teammaker%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90--structure-of-teammaker)
+  - [!cup](#cup)
+    - [!cupw](#cupw)
+- [TeamMaker追加方法 / How to invite TeamMaker](#TeamMaker%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95--How-to-invite-TeamMaker)
+  - [家庭用PC(Windows, Macにてインストールする場合)](#%E5%AE%B6%E5%BA%AD%E7%94%A8PCWindows-Mac%E3%81%AB%E3%81%A6%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88)
+  - [常時稼働環境の作成 / How to run this bot with raspberry pi](#%E5%B8%B8%E6%99%82%E7%A8%BC%E5%83%8D%E7%92%B0%E5%A2%83%E3%81%AE%E4%BD%9C%E6%88%90--How-to-run-this-bot-with-raspberry-pi)
+- [TeamMaker全体構成 / Structure of TeamMaker](#TeamMaker%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90--Structure-of-TeamMaker)
 
 # TeamMakerとは / What is TeamMaker
 皆さん、ゲームは好きですか？
@@ -70,6 +72,20 @@ If you want to know more about it, please move to below!
 から以下の画像のように **!start**と打ってください。
 するとGeneralに参加したメンバを勝手に2つのチームに分けてくれます。
 ![start](image/start.png)
+
+## !cup
+友人たちと熱いトーナメント戦をしたい!! だけどいちいちトーナメント表を作るのは面倒くさい!
+そんなあなたに魔法のコマンド!
+以下の画像のように **!cup**と打ってみてください。
+するとGeneralに参加したメンバを参加者としたトーナメント表を自動で作成して貼り付けてくれます。
+![cup](image/cup.png)
+
+### !cupw
+ちなみにこのトーナメント表、勝ち負けの判定もできます。
+コマンドで **!cupw [トーナメント番号] [ラウンド番号] [買った人のID] [4-2などのスコア]**を打ってもらうと、
+下のようになります。
+![cupw](image/cupw.png)
+これで面倒な記録も必要なし! いつでもどこでも手軽にトーナメント戦ができるようになります!
 
 ~~~~ 随時追記 ~~~~~
 

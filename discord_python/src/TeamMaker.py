@@ -11,6 +11,8 @@ from InitSetting import *
 from CupMaker import *
 
 
+SETTING_FILE_NAME="../Setting/TeamSetting.json"
+BOT_NAME = "TeamMaker"
 
 class TEAM_MAKER():
     def __init__(self):
@@ -122,12 +124,10 @@ class TEAM_MAKER():
                 groupNum += 1
                 indexStr += "-------\n"
 
-                #await self.client.send_message(message.channel, indexStr)
                 sendMessage += indexStr
 
             sendMessage += self.members[self.listIDs[i]]
             sendMessage += "\n"
-            #await self.client.send_message(message.channel, sendMessage)
         return sendMessage
 
     def PrintByTeamNum(self, message):
@@ -173,7 +173,7 @@ class TEAM_MAKER():
 
 
 client = discord.Client() # 接続に使用するオブジェクト
-initInfo    = INIT_SETTING()
+initInfo    = INIT_SETTING(SETTING_FILE_NAME)
 tm = TEAM_MAKER()
 
 
@@ -187,9 +187,9 @@ async def on_message(message):
     sendMessage = ""
     sc      = SERVER_CONTROL(client, initInfo.serverName, BOT_NAME)
     # master version
-    #members, listIDs = sc.GetMemberAndListIDs(initInfo.mainChannel)
+    members, listIDs = sc.GetMemberAndListIDs(initInfo.mainChannel)
     # develop version
-    members = sc.GetOnlineUsers()
+    #members = sc.GetOnlineUsers()
     listIDs = sc.GetListIDs(members)
     tm.update(members, listIDs)
 
