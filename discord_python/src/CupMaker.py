@@ -8,46 +8,30 @@ import math
 
 from DrawImage import DRAW_SHAPE
 
-SIDE = enum.Enum("SIDE", "middle right left")
-FONT_SIZE = 15
-
-sample_members = ["クラウザー18世", "ファケナロート", "cccc", "dddd", "eeee", "ffff", "gggg", "hhhh","iiii", "kkkk","llll","mmmm","nnnnn","ooooo","ppppp"]
-#sample_listIDs = [0,1,2,3,4,5]
-#class MEMBER_CARD():
-#    def __init__(self, name, id=0):
-#        self.roundID = id
-#        self.x = 0
-#        self.y = 0
-#        self.side = SIDE.right
-#        self.available = 1
-#
-#    def Lost(self):
-#        self.available = 0
-#
-#    def Win(self):
-#        self.available = 1
-#
-#    def SetPosition(self, x, y, side=SIDE.right):
-#        self.x = x
-#        self.y = y
-#        self.side = side
-
-
+# @brief トーナメント内の各ラウンドの構造体。全てプレイヤーはラウンドの中に格納されて管理される
 class ROUND():
     def __init__(self,stageNum, id, members):
         self.roundID = id
         self.stageNum = stageNum
         self.parentID = 0
         self.childID = []
+
+        # それぞれのラウンドの座標を保存
+        # ここではしたの*の座標を格納
+        #
+        # ---|
+        #    *---|
+        # ---|   |
+        #
         self.x = 0
         self.y = 0
+
         self.hasChildFlag = 0
         self.PositionSetFlag = 0
         self.SetMember(members)
         self.winner = -1
-        self.score = ""
         self.player_id = -1
-        self.status = 0
+        self.score = ""
 
 
     def SetMember(self, members):
@@ -81,7 +65,6 @@ class ROUND():
     def SetWinnerID(self, id, score):
         self.winner = id
         self.score = score
-        print(self.roundID)
 
     def SetPlayerID(self, id):
         self.player_id = id
@@ -89,16 +72,15 @@ class ROUND():
     def GetWinnerID(self):
         return(self.winner)
 
-
-
-
-
-
+# @brief トーナメント作成用の構造体.
+# ここではあくまで登録されたメンバー全員を入れたトーナメント表を作成する機能と勝ち負けの登録のみにしている。
+# なので、人数が多い場合や、トーナメントを分けてあげたい場合は複数個のクラスを呼んで上げる必要がある
 class TOURNAMENT_MAKER():
     def __init__(self, members):
         self.members = members
         self.tournament = []
         self.start_pos = [ 120, 30]
+        # 線を描く際のオフセット値
         self.y_space = 40
         self.x_space = 50
 
@@ -137,7 +119,6 @@ class TOURNAMENT_MAKER():
                     self.firstRound.append(round_id)
                     break
 
-        #self.start_pos[1] = len(self.firstRound) * self.y_space
         for i in range(len(self.firstRound)):
             self.tournament[self.firstRound[i]].SetPosition(self.start_pos[0], self.start_pos[1] + i * self.y_space)
             self.tournament[self.firstRound[i]].SetPlayerID(i)
@@ -162,21 +143,12 @@ class TOURNAMENT_MAKER():
                         self.CalcNewCenterPosition(round)
             stageNum -= 1
 
-    def DebugPrint(self):
-        for i in range(len(self.tournament)):
-            print("Round %d, Stage %d" % (self.tournament[i].roundID,self.tournament[i].stageNum))
-            print(self.tournament[i].memberList)
-
-    def DebugPrint2(self):
-        for i in range(len(self.tournament)):
-            print("Round %d, Stage %d, (x,y)=(%d,%d)" % (self.tournament[i].roundID,self.tournament[i].stageNum, self.tournament[i].x, self.tournament[i].y))
-            print(self.tournament[i].memberList)
-            print(self.tournament[i].childID)
-
     def SetMatchScore(self, roundID, winnerID, score):
         self.tournament[roundID].SetWinnerID(self.firstRound[winnerID], score)
 
 
+# @brief TOURNAMENT_MAKER()にメンバーを登録する前の下処理と画像作成をしてあげるクラス
+# TOURNAMENT_MAKERを内包しているので、ラッパーとして勝ち負けを登録する関数などを加えている
 class CUP_MAKER():
     def __init__(self, member, tournament_name):
         self.tournament = []
@@ -222,75 +194,36 @@ class CUP_MAKER():
         image_list = []
         for tournament in self.tournament:
             image_name = self.tournament_name + str(tournament_num)
-            #image_list.append(image_name+".jpg")
             ds = DRAW_SHAPE(image_name)
             ds.SetFontFile("font_1_honokamarugo_1.1.ttf", size=12)
+            ds.GetNewImage()
             ds.DrawText( 0, 0,self.tournament_name+str(tournament_num))
             for t in tournament.tournament:
                 width = self.line_width
-                if t.winner != -1:
-                    width = 2 * self.line_width
                 if t.stageNum == 0:
+                    # 決勝戦は先にラウンドがないけど横線を引きたい
+                    if t.winner != -1:
+                        # 勝者のいる場合は太線で描画
+                        width *= 2
                     ds.DrawLine(t.x, t.y, 50 + t.x, t.y, width=width)
 
                 if len(t.childID) > 1:
                     for child in t.childID:
                         width = self.line_width
                         if t.winner != -1:
+                            # もしこのラウンドの勝者がいる場合,太さを二倍とスコアを表記
                             for member in tournament.tournament[child].memberList:
                                 if member == tournament.tournament[t.winner].memberList[0]:
-                                    width = 5
+                                    width *= 2
                                     ds.DrawText(t.x + 20, t.y - 20, t.score)
+                        # ジグザグの線を描画
                         ds.DrawZigZagYtoX(t.x, t.y, 5+tournament.tournament[child].x, tournament.tournament[child].y, width=width)
                         ds.DrawText(t.x + 5, t.y - 20, "[" + str(t.roundID) + "]")
                 if len(t.memberList)==1:
                     ds.DrawRectangle(self.start_pos[0]+t.x,self.start_pos[1]+t.y - 10)
-                    text = " " + str(t.player_id) + "." + t.memberList[0]
-                    print(text)
-                    ds.DrawText(self.start_pos[0]+t.x,self.start_pos[1]+t.y-5," " + str(t.player_id) + "." + t.memberList[0])
+                    member_name_text = " " + str(t.player_id) + "." + t.memberList[0]
+                    ds.DrawText(self.start_pos[0]+t.x,self.start_pos[1]+t.y-5,member_name_text
             image_dir = ds.SaveImage()
             image_list.append(image_dir)
             tournament_num += 1
         return(image_list)
-
-
-
-
-
-
-if __name__=='__main__':
-    cup = CUP_MAKER(sample_members, "グナふぃふぁカップ")
-    cup.CreateCupTournament()
-    cup.DrawTournamentImage()
-    #tournament = TOURNAMENT_MAKER(sample_members)
-    #tournament.CreateNormalTournament()
-    #tournament.DebugPrint2()
-
-    #ds = DRAW_SHAPE("sample_tournament")
-    #ds.SetFontFile("font_1_honokamarugo_1.1.ttf", size=12)
-    #start_pos = [-100,0]
-    #line_width = 3
-    #stageNum = tournament.GetLargestStageNum() + 1
-    #tournament.SetMatchScore(8, 1, "4-2")
-    #tournament.SetMatchScore(3, 1, "4-2")
-    #for t in tournament.tournament:
-    #    width = line_width
-    #    if t.winner != -1:
-    #        width = 2 * line_width
-    #    if t.stageNum == 0:
-    #        ds.DrawLine(t.x, t.y, 50 + t.x, t.y, width=width)
-
-    #    if len(t.childID) > 1:
-    #        for child in t.childID:
-    #            width = line_width
-    #            if t.winner != -1:
-    #                for member in tournament.tournament[child].memberList:
-    #                    if member == tournament.tournament[t.winner].memberList[0]:
-    #                        width = 5
-    #                        ds.DrawText(t.x + 5, t.y - 20, t.score)
-    #            ds.DrawZigZagYtoX(t.x, t.y, 5+tournament.tournament[child].x, tournament.tournament[child].y, width=width)
-    #    if len(t.memberList)==1:
-    #        ds.DrawRectangle(start_pos[0]+t.x,start_pos[1]+t.y - 10)
-    #        ds.DrawText(start_pos[0]+t.x,start_pos[1]+t.y-5," " + str(t.player_id) + "." + t.memberList[0])
-    #ds.SaveImage()
-

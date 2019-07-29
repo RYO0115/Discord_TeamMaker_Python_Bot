@@ -15,8 +15,7 @@ class DRAW_SHAPE():
         self.SetLineFillColor()
         self.SetEdgeColor()
         self.SetTextSize()
-        self.GetNewImage()
-        #self.font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc",size=20)
+        #self.GetNewImage()
 
     def GetCenterPoint(self):
         return([self.size_x/2, self.size_y/2])
@@ -75,6 +74,10 @@ class DRAW_SHAPE():
 
     def SetFontSize(self):
         self.font = ImageFont.truetype(size=self.textSize)
+
+    def SetImageSize(self, x, y):
+        self.size_x = x
+        self.size_y = y
 
     def DrawText(self, x1, y1, text):
         #draw = ImageDraw.Draw(self.im)
