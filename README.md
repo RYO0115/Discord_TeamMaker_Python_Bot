@@ -132,8 +132,9 @@ If you want to know more about it, please move to below!
 ここまでくれば後は簡単です。お使いのPCからコマンドで
 
     sudo pip install discord.py
+    sudo pip install pillow
 
-でdiscord.pyをインストールしたあと、
+でdiscord.py、PILをインストールしたあと、
 
     python TeamMaker.py
 
@@ -147,8 +148,7 @@ If you want to know more about it, please move to below!
 などを試してみてください。
 二個目についてはどうやらDiscord.pyがソケット通信を利用していることが原因で、
 Discord.comに接続できないことがあるようです。ちなみに私はMacにAnacondaをインストールして
-無事に動きましたが、あとで説明するRasbianでminicondaを入れた際にはいろいろとネットワークの
-設定を頑張りましたが、うまく接続させることができませんでした。
+無事に動きましたが、あとで説明するRasbianでminicondaを入れた際にはいろいろとネットワークの設定を頑張りましたが、うまく接続させることができませんでした。
 
 ## 常時稼働環境の作成 / How to run this bot with raspberry pi
 現在、私はこのbotを自分のPCからではなく、Raspberry pi 2B+にて常時稼働させています。
