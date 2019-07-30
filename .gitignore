@@ -1,6 +1,6 @@
 */Setting/TeamSetting.json
 .vscode
 */__pycache__
-*.ttf
 *.DS_Store*
+*.py
 *.pyc

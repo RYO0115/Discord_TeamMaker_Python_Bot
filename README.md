@@ -6,6 +6,8 @@ Member List Maker Bot for Discord App
 - [TeamMakerとは / What is TeamMaker](#TeamMaker%E3%81%A8%E3%81%AF--What-is-TeamMaker)
 - [TeamMaker使用方法 / How to use TeamMaker](#TeamMaker%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95--How-to-use-TeamMaker)
   - [!start](#start)
+  - [!cup](#cup)
+  - [!cupw](#cupw)
 - [TeamMaker追加方法 / How to invite TeamMaker](#TeamMaker%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95--How-to-invite-TeamMaker)
   - [家庭用PC(Windows, Macにてインストールする場合)](#%E5%AE%B6%E5%BA%AD%E7%94%A8PCWindows-Mac%E3%81%AB%E3%81%A6%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88)
   - [常時稼働環境の作成 / How to run this bot with raspberry pi](#%E5%B8%B8%E6%99%82%E7%A8%BC%E5%83%8D%E7%92%B0%E5%A2%83%E3%81%AE%E4%BD%9C%E6%88%90--How-to-run-this-bot-with-raspberry-pi)
@@ -59,15 +61,30 @@ in just a second or so.
 If you want to know more about it, please move to below!
 
 # TeamMaker使用方法 / How to use TeamMaker
-現在搭載されている機能は２つのチームにランダムで分けてくれることです。
-それ以外にも機能はありますが、現在デバッグ中なので、随時追加していきます。
+現在搭載されている機能は２つのチームにランダムで分けてくれること、トーナメント表の自動作成機能です。
 
+現在TeamMakerではなにかフォントを一つ指定する必要があります。
+今は以下のリンク先にある「ほのかアンティーク角」を使わせていただいています。
+[フォントリンク]http://font.gloomy.jp/honoka-antique-kaku-dl.html
 ## !start
 すでにこのbotをサーバーに入れられている方は友達と一緒にVOICE CHANNELSにあるGeneralに参加して
 から以下の画像のように **!start**と打ってください。
 するとGeneralに参加したメンバを勝手に2つのチームに分けてくれます。
 ![start](image/start.png)
 
+## !cup
+友人たちと熱いトーナメント戦をしたい!! だけどいちいちトーナメント表を作るのは面倒くさい!
+そんなあなたに魔法のコマンド!
+以下の画像のように **!cup**と打ってみてください。
+するとGeneralに参加したメンバを参加者としたトーナメント表を自動で作成して貼り付けてくれます。
+![cup](image/cup.png)
+
+## !cupw
+ちなみにこのトーナメント表、勝ち負けの判定もできます。
+コマンドで **!cupw [トーナメント番号] [ラウンド番号] [買った人のID] [4-2などのスコア]**を打ってもらうと、
+下のようになります。
+![cupw](image/cupw.png)
+これで面倒な記録も必要なし! いつでもどこでも手軽にトーナメント戦ができるようになります!
 
 # TeamMaker追加方法 / How to invite TeamMaker
 ## 家庭用PC(Windows, Macにてインストールする場合)
