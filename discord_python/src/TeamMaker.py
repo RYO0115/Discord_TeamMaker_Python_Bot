@@ -18,7 +18,6 @@ class TEAM_MAKER():
     def __init__(self):
         self.members = []
         self.listIDs = []
-        self.cup = []
 
     def update(self, members, listIDs):
         self.members = members
@@ -155,7 +154,6 @@ class TEAM_MAKER():
         image_list = "null"
         if message.content.startswith('!start'):
             sendMessage = self.Print2Teams(message)
-
         elif message.content.startswith('!teams'):
             sendMessage = self.PrintByTeamNum(message)
         elif message.content.startswith('!men'):
@@ -170,7 +168,33 @@ class TEAM_MAKER():
         return sendMessage, image_list
         #await self.client.send_message(message.channel, sendMessage)
 
+class BOT_BASE():
+    def __init__(self, members, listIDs):
+        self.members = []
+        self.listIDs = []
+        self.cup = []
 
+    def update(self, members, listIDs):
+        self.members = members
+        self.listIDs = listIDs
+
+    def Main( self, message):
+        sendMessage = ""
+        image_list = "null"
+        if message.content.startswith('!start'):
+            sendMessage = self.Print2Teams(message)
+        elif message.content.startswith('!teams'):
+            sendMessage = self.PrintByTeamNum(message)
+        elif message.content.startswith('!men'):
+            sendMessage = self.PrintByMemberNum(message)
+        elif message.content.startswith('!cupw'):
+            sendMessage,image_list = self.SetTournamentWinner(message)
+        elif message.content.startswith('!cup'):
+            sendMessage,image_list = self.CreateTournament(message)
+        else:
+            sendMessage = "ごめん。何言ってるかわからない。"
+
+        return sendMessage, image_list
 
 client = discord.Client() # 接続に使用するオブジェクト
 initInfo    = INIT_SETTING(SETTING_FILE_NAME)
