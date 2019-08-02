@@ -3,7 +3,7 @@ import time
 import subprocess
 
 COMMAND  = "python3"
-SRC_NAME = "TeamMaker.py"
+SRC_NAME = "BotBase.py"
 
 dir = os.path.abspath(__file__)
 proc = subprocess.Popen([COMMAND, dir[:-len("main.py")] + SRC_NAME])
