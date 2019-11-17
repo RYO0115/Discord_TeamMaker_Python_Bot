@@ -2,16 +2,16 @@
 Member List Maker Bot for Discord App
 
 
-- [TeamMaker](#TeamMaker)
-- [TeamMakerとは / What is TeamMaker](#TeamMaker%E3%81%A8%E3%81%AF--What-is-TeamMaker)
-- [TeamMaker使用方法 / How to use TeamMaker](#TeamMaker%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95--How-to-use-TeamMaker)
+- [TeamMaker](#teammaker)
+- [TeamMakerとは / What is TeamMaker](#teammaker%e3%81%a8%e3%81%af--what-is-teammaker)
+- [TeamMaker使用方法 / How to use TeamMaker](#teammaker%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95--how-to-use-teammaker)
   - [!start](#start)
   - [!cup](#cup)
   - [!cupw](#cupw)
-- [TeamMaker追加方法 / How to invite TeamMaker](#TeamMaker%E8%BF%BD%E5%8A%A0%E6%96%B9%E6%B3%95--How-to-invite-TeamMaker)
-  - [家庭用PC(Windows, Macにてインストールする場合)](#%E5%AE%B6%E5%BA%AD%E7%94%A8PCWindows-Mac%E3%81%AB%E3%81%A6%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88)
-  - [常時稼働環境の作成 / How to run this bot with raspberry pi](#%E5%B8%B8%E6%99%82%E7%A8%BC%E5%83%8D%E7%92%B0%E5%A2%83%E3%81%AE%E4%BD%9C%E6%88%90--How-to-run-this-bot-with-raspberry-pi)
-- [TeamMaker全体構成 / Structure of TeamMaker](#TeamMaker%E5%85%A8%E4%BD%93%E6%A7%8B%E6%88%90--Structure-of-TeamMaker)
+- [TeamMaker追加方法 / How to invite TeamMaker](#teammaker%e8%bf%bd%e5%8a%a0%e6%96%b9%e6%b3%95--how-to-invite-teammaker)
+  - [家庭用PC(Windows, Macにてインストールする場合)](#%e5%ae%b6%e5%ba%ad%e7%94%a8pcwindows-mac%e3%81%ab%e3%81%a6%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b%e5%a0%b4%e5%90%88)
+  - [常時稼働環境の作成 / How to run this bot with raspberry pi](#%e5%b8%b8%e6%99%82%e7%a8%bc%e5%83%8d%e7%92%b0%e5%a2%83%e3%81%ae%e4%bd%9c%e6%88%90--how-to-run-this-bot-with-raspberry-pi)
+- [TeamMaker全体構成 / Structure of TeamMaker](#teammaker%e5%85%a8%e4%bd%93%e6%a7%8b%e6%88%90--structure-of-teammaker)
 
 # TeamMakerとは / What is TeamMaker
 皆さん、ゲームは好きですか？
@@ -133,7 +133,7 @@ If you want to know more about it, please move to below!
 
 でdiscord.py、PILをインストールしたあと、
 
-    python TeamMaker.py
+    python BotBase.py
 
 を実行すればTeamMaker Botを起動することができます。
 このTeamMaker.pyはどのディレクトリからでも実行ができます。
