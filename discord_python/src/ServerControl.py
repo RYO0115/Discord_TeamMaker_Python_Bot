@@ -1,5 +1,4 @@
 
-import discord # インストールした discord.py
 import random
 
 class SERVER_CONTROL():

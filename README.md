@@ -114,7 +114,6 @@ If you want to know more about it, please move to below!
 ここまでくれば後は簡単です。お使いのPCからコマンドで
 
     sudo pip install discord.py
-    sudo pip install pillow
 
 でdiscord.py、PILをインストールしたあと、
 
