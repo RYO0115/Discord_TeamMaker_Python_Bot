@@ -64,7 +64,7 @@ async def on_message(message):
     sendMessage = ""
     sc      = SERVER_CONTROL(client, initInfo.serverName, BOT_NAME)
     # master version
-    members, listIDs = sc.GetMemberAndListIDs(initInfo.mainChannel)
+    members = sc.GetChannelMember(initInfo.mainChannel)
     # develop version
     #members = sc.GetOnlineUsers()
     listIDs = sc.GetListIDs(members)

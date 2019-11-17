@@ -33,16 +33,18 @@ class SERVER_CONTROL():
         random.shuffle(listIDs)
         return listIDs
 
-    def GetMemberAndListIDs(self, channelName):
+    def GetChannelMember(self, channelName):
         discord_members = self.GetChannelUsers(channelName)
         members = []
         for member in discord_members:
             members.append(member.name)
 
+        return members
 
-        listIDs = self.GetListIDs(members)
+        #listIDs = self.GetListIDs(members)
 
-        return members, listIDs
+        #return members, listIDs
+
 
 
 
