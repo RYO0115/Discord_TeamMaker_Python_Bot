@@ -1,5 +1,6 @@
-
-import discord # インストールした discord.py
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import discord
 import random
 
 import json
@@ -77,6 +78,5 @@ async def on_message(message):
             for img in image_list:
                     #await channel.send(file= discord.File(img))
                     await client.send_file(message.channel, img)
-
 
 client.run(initInfo.token)

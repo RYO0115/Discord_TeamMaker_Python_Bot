@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # @brief トーナメント内の各ラウンドの構造体。全てプレイヤーはラウンドの中に格納されて管理される
 class ROUND():

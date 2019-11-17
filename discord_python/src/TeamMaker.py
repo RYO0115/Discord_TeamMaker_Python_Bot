@@ -1,4 +1,6 @@
 
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 class TEAM_MAKER():
     def __init__(self):
         self.members = []
