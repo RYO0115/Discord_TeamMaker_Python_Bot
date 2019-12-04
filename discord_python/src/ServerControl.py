@@ -35,19 +35,15 @@ class SERVER_CONTROL():
 
     def GetChannelMember(self, channelName):
         discord_members = self.GetChannelUsers(channelName)
-        members = []
+        member_names = []
         for member in discord_members:
-            members.append(member.name)
+            member_names.append(member.name)
 
-        return members
+        return member_names
 
         #listIDs = self.GetListIDs(members)
 
         #return members, listIDs
-
-
-
-
     def GetOnlineUsers(self):
         members = []
         for server in self.client.servers:

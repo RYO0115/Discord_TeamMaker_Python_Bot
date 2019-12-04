@@ -49,6 +49,8 @@ class BOT_BASE():
 
         return sendMessage, image_list
 
+print("Discord version: %s, %s" % (discord.version_info, discord.__version__))
+
 client = discord.Client() # 接続に使用するオブジェクト
 initInfo    = INIT_SETTING(SETTING_FILE_NAME)
 botBase = BOT_BASE()
