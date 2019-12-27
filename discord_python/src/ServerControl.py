@@ -1,4 +1,4 @@
-
+import discord
 import random
 
 class SERVER_CONTROL():
