@@ -2,10 +2,19 @@
 Member List Maker Bot for Discord App
 こちらのブランチはチーム分け機能のみになります。
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop_discordver
 - [TeamMaker](#teammaker)
 - [TeamMakerとは / What is TeamMaker](#teammaker%e3%81%a8%e3%81%af--what-is-teammaker)
 - [TeamMaker使用方法 / How to use TeamMaker](#teammaker%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95--how-to-use-teammaker)
   - [!start](#start)
+<<<<<<< HEAD
+=======
+  - [!cup](#cup)
+  - [!cupw](#cupw)
+>>>>>>> develop_discordver
 - [TeamMaker追加方法 / How to invite TeamMaker](#teammaker%e8%bf%bd%e5%8a%a0%e6%96%b9%e6%b3%95--how-to-invite-teammaker)
   - [家庭用PC(Windows, Macにてインストールする場合)](#%e5%ae%b6%e5%ba%ad%e7%94%a8pcwindows-mac%e3%81%ab%e3%81%a6%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b%e5%a0%b4%e5%90%88)
   - [常時稼働環境の作成 / How to run this bot with raspberry pi](#%e5%b8%b8%e6%99%82%e7%a8%bc%e5%83%8d%e7%92%b0%e5%a2%83%e3%81%ae%e4%bd%9c%e6%88%90--how-to-run-this-bot-with-raspberry-pi)
