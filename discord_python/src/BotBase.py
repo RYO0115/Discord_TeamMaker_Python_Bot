@@ -1,5 +1,5 @@
 
-import discord # インストールした discord.py
+#import discord # インストールした discord.py
 import random
 
 import json
@@ -81,9 +81,11 @@ class BOT_BASE():
 
         return sendMessage, image_list
 
-client = discord.Client() # 接続に使用するオブジェクト
 initInfo    = INIT_SETTING(SETTING_FILE_NAME)
-botBase = BOT_BASE()
+sc      = SERVER_CONTROL(initInfo.serverName, BOT_NAME)
+client      = sc.GetDiscordClient() # 接続に使用するオブジェクト
+#client      = discord.Client() # 接続に使用するオブジェクト
+botBase     = BOT_BASE()
 
 
 # 起動時に通知してくれる処理
@@ -94,11 +96,12 @@ async def on_ready():
 @client.event
 async def on_message(message):
     sendMessage = ""
-    sc      = SERVER_CONTROL(client, initInfo.serverName, BOT_NAME)
-    # master version
-    members, listIDs = sc.GetMemberAndListIDs(initInfo.mainChannel)
+    #sc      = SERVER_CONTROL(client, initInfo.serverName, BOT_NAME)
     # develop version
     #members = sc.GetOnlineUsers()
+    # master version
+    members, listIDs = sc.GetMemberAndListIDs(initInfo.mainChannel)
+
     listIDs = sc.GetListIDs(members)
     botBase.update(members, listIDs)
 

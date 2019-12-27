@@ -3,10 +3,13 @@ import discord # インストールした discord.py
 import random
 
 class SERVER_CONTROL():
-    def __init__( self, client, serverName, BOT_NAME):
-        self.client = client
+    def __init__( self, serverName, BOT_NAME):
+        self.client = discord.Client()
         self.serverName = serverName
         self.BOT_NAME = BOT_NAME
+
+    def GetDiscordClient(self):
+        return(self.client)
 
     def GetChannelList(self):
         channelList = {}
