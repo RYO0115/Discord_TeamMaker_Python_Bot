@@ -8,12 +8,28 @@ class SERVER_CONTROL():
         self.serverName = serverName
         self.BOT_NAME = BOT_NAME
 
+        self.discordVersionInfo = discord.__version__.split(".")
+        print(self.discordVersionInfo)
+
+
     def GetDiscordClient(self):
+
         return(self.client)
+
+    def GetDiscordServerList(self):
+        #if self.discordVersionInfo
+        servers = {}
+        if self.discordVersionInfo[0] == "0":
+            servers = self.client.servers
+        else:
+            servers = self.client.guilds
+
+        return(servers)
 
     def GetChannelList(self):
         channelList = {}
-        for server in self.client.servers:
+        servers = self.GetDiscordServerList()
+        for server in servers:
             if server.name == self.serverName:
                 for channel in server.channels:
                     channelList[channel.name] = channel
@@ -21,7 +37,8 @@ class SERVER_CONTROL():
 
     def GetChannelUsers(self, channelName):
         members = []
-        for server in self.client.servers:
+        servers = self.GetDiscordServerList()
+        for server in servers:
             if server.name == self.serverName:
                 for channel in server.channels:
                     if channel.name == channelName:
@@ -50,7 +67,8 @@ class SERVER_CONTROL():
 
     def GetOnlineUsers(self):
         members = []
-        for server in self.client.servers:
+        servers = self.GetDiscordServerList()
+        for server in servers:
             if server.name != self.serverName:
                 continue
             for member in server.members:

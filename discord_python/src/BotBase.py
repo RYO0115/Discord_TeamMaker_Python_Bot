@@ -105,7 +105,7 @@ async def on_message(message):
     listIDs = sc.GetListIDs(members)
     botBase.update(members, listIDs)
 
-    if message.content.startswith('/neko') or message.content.startswith("!"):
+    if message.content.startswith('/') or message.content.startswith("!"):
         sendMessage, image_list = botBase.Main(message)
         if sendMessage != "":
             await client.send_message(message.channel, sendMessage)
