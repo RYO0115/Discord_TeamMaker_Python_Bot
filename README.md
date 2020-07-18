@@ -6,10 +6,9 @@ Member List Maker Bot for Discord App
 - [TeamMakerとは / What is TeamMaker](#teammakerとは--what-is-teammaker)
 - [TeamMaker使用方法 / How to use TeamMaker](#teammaker使用方法--how-to-use-teammaker)
   - [!start](#start)
-  - [!start](#start-1)
   - [!teams](#teams)
   - [!men](#men)
-- [TeamMaker追加方法 / How to invite TeamMaker](#teammaker追加方法--how-to-invite-teammaker)
+- [TeamMaker追加方法 / How to add TeamMaker in your Discord Server](#teammaker追加方法--how-to-add-teammaker-in-your-discord-server)
   - [家庭用PC(Windows, Macにてインストールする場合)](#家庭用pcwindows-macにてインストールする場合)
   - [常時稼働環境の作成 / How to run this bot with raspberry pi](#常時稼働環境の作成--how-to-run-this-bot-with-raspberry-pi)
 - [TeamMaker全体構成 / Structure of TeamMaker](#teammaker全体構成--structure-of-teammaker)
@@ -78,8 +77,6 @@ If you want to know more about it, please move to below!
 In this "TeamMaker only" version, "TeamMaker" only supports random team making.
 
 
-## !start
-
 This is the smplest team making command.
 
 Before using this command, please add voice channel named "General" in your Discord Server, and type **!start** !!
@@ -131,7 +128,7 @@ If you want to put 4 people in each teams, then type
 
 
 
-# TeamMaker追加方法 / How to invite TeamMaker
+# TeamMaker追加方法 / How to add TeamMaker in your Discord Server
 ## 家庭用PC(Windows, Macにてインストールする場合)
 基本的にはいろいろな[ブログ](https://www.devdungeon.com/content/make-discord-bot-python)で掲載されている情報の通り、DeveloperサイトでBotを作成したあと、
 自分のサーバに追加してください。
