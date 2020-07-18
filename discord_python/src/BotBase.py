@@ -63,6 +63,10 @@ class BOT_BASE():
                 sendMessage = "ネコＡ マーオ \n ネコＢ マーオ\nネコＡ マーーオ\n ネコＢ マーオ\nネコＡ マーーーオ！\n ネコＢ マーーオ！\n ネコＡ マーーーーーーーーオ！！！！！！\n ネコＢ マーーーーーーーオ！！！！！\nネコＡ＆Ｂ「ギャフベロハギャベバブジョハバ」\n"
             elif message.content.startswith("/neko"):
                 sendMessage = "にゃーん"
+            elif message.content.startswith("/check"):
+                sendMessage = "Arsenal till I die!!"
+                img_dir = os.path.dirname(os.path.abspath(__file__)) + "/../../image/"
+                image_list = [img_dir + "gunnersaurus.png"]
             else:
                 sendMessage = "ちょっと何言ってるかわからない"
         elif message.content.startswith("!"):
@@ -82,7 +86,7 @@ class BOT_BASE():
         return sendMessage, image_list
 
 initInfo    = INIT_SETTING(SETTING_FILE_NAME)
-sc      = SERVER_CONTROL(initInfo.serverName, BOT_NAME)
+sc          = SERVER_CONTROL(initInfo.serverName, BOT_NAME)
 client      = sc.GetDiscordClient() # 接続に使用するオブジェクト
 #client      = discord.Client() # 接続に使用するオブジェクト
 botBase     = BOT_BASE()
@@ -108,11 +112,12 @@ async def on_message(message):
     if message.content.startswith('/') or message.content.startswith("!"):
         sendMessage, image_list = botBase.Main(message)
         if sendMessage != "":
-            await client.send_message(message.channel, sendMessage)
+            await sc.SendTextMessage(message.channel, sendMessage)
         if image_list != "null":
             for img in image_list:
+                await sc.SendImage( message.channel, img)
                     #await channel.send(file= discord.File(img))
-                    await client.send_file(message.channel, img)
+                    #await client.send_file(message.channel, img)
 
 
 client.run(initInfo.token)

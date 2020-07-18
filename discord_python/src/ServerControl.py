@@ -13,7 +13,6 @@ class SERVER_CONTROL():
 
 
     def GetDiscordClient(self):
-
         return(self.client)
 
     def GetDiscordServerList(self):
@@ -26,6 +25,12 @@ class SERVER_CONTROL():
 
         return(servers)
 
+    def GetSelectedChannelVoiceMembers(self, channel):
+        if self.discordVersionInfo[0] == "0":
+            return(channel.voice_members)
+        else:
+            return(channel.members)
+
     def GetChannelList(self):
         channelList = {}
         servers = self.GetDiscordServerList()
@@ -34,6 +39,7 @@ class SERVER_CONTROL():
                 for channel in server.channels:
                     channelList[channel.name] = channel
         return channelList
+        
 
     def GetChannelUsers(self, channelName):
         members = []
@@ -42,8 +48,7 @@ class SERVER_CONTROL():
             if server.name == self.serverName:
                 for channel in server.channels:
                     if channel.name == channelName:
-                        for member in channel.voice_members:
-                            members.append(member)
+                        members.extend(self.GetSelectedChannelVoiceMembers(channel))
         return members
 
     def GetListIDs(self, members):
@@ -64,7 +69,6 @@ class SERVER_CONTROL():
         return members, listIDs
 
 
-
     def GetOnlineUsers(self):
         members = []
         servers = self.GetDiscordServerList()
@@ -76,4 +80,17 @@ class SERVER_CONTROL():
                     members.append(member.name)
             break
         return members
+
+    async def SendTextMessage(self, channel, text):
+        if self.discordVersionInfo[0] == "0":
+            await self.client.send_message(channel, text)
+        else:
+            await channel.send( text)
+    
+    async def SendImage(self, channel, imageStrDir):
+        if self.discordVersionInfo[0] == "0":
+            await self.client.send_file(channel, imageStrDir)
+        else:
+            await channel.send(file=discord.File(imageStrDir))
+
 
