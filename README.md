@@ -3,15 +3,17 @@ Member List Maker Bot for Discord App
 
 
 - [TeamMaker](#teammaker)
-- [TeamMakerとは / What is TeamMaker](#teammaker%e3%81%a8%e3%81%af--what-is-teammaker)
-- [TeamMaker使用方法 / How to use TeamMaker](#teammaker%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95--how-to-use-teammaker)
+- [TeamMakerとは / What is TeamMaker](#teammakerとは--what-is-teammaker)
+- [TeamMaker使用方法 / How to use TeamMaker](#teammaker使用方法--how-to-use-teammaker)
   - [!start](#start)
+  - [!teams](#teams)
+  - [!men](#men)
   - [!cup](#cup)
   - [!cupw](#cupw)
-- [TeamMaker追加方法 / How to invite TeamMaker](#teammaker%e8%bf%bd%e5%8a%a0%e6%96%b9%e6%b3%95--how-to-invite-teammaker)
-  - [家庭用PC(Windows, Macにてインストールする場合)](#%e5%ae%b6%e5%ba%ad%e7%94%a8pcwindows-mac%e3%81%ab%e3%81%a6%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%99%e3%82%8b%e5%a0%b4%e5%90%88)
-  - [常時稼働環境の作成 / How to run this bot with raspberry pi](#%e5%b8%b8%e6%99%82%e7%a8%bc%e5%83%8d%e7%92%b0%e5%a2%83%e3%81%ae%e4%bd%9c%e6%88%90--how-to-run-this-bot-with-raspberry-pi)
-- [TeamMaker全体構成 / Structure of TeamMaker](#teammaker%e5%85%a8%e4%bd%93%e6%a7%8b%e6%88%90--structure-of-teammaker)
+- [TeamMaker追加方法 / How to add TeamMaker](#teammaker追加方法--how-to-add-teammaker)
+  - [家庭用PC(Windows, Macにてインストールする場合)/ Windows Mac Linux](#家庭用pcwindows-macにてインストールする場合-windows-mac-linux)
+  - [常時稼働環境の作成 / How to run this bot with raspberry pi](#常時稼働環境の作成--how-to-run-this-bot-with-raspberry-pi)
+- [TeamMaker全体構成 / Structure of TeamMaker](#teammaker全体構成--structure-of-teammaker)
 
 # TeamMakerとは / What is TeamMaker
 皆さん、ゲームは好きですか？
@@ -72,11 +74,78 @@ If you want to know more about it, please move to below!
 するとGeneralに参加したメンバを勝手に2つのチームに分けてくれます。
 ![start](image/start.png)
 
+--------
+
+In this version, "TeamMaker" only supports random team making, and random tournament making.
+
+
+This is the smplest team making command.
+
+Before using this command, please add voice channel named "General" in your Discord Server, and type **!start** !!
+
+Then you will get the member list separated into 2 teams.
+
+![start](image/start.png)
+
+
+## !teams
+
+こちらはチーム数を指定してチーム分けするコマンドになります。
+
+なので、もし3チームに分けたいなら、
+
+  !team 3
+
+と入力してください。これで、指定したチーム数でのチーム分けの結果が出力されます。
+
+------
+
+This is a command to separate into several selected number of teams.
+
+If you want to separate into 3 teams, type
+
+  !teams 3
+
+and now you will get member list separated into 3 teams.
+
+
+
+## !men
+
+こちらは一チームあたりの人数を指定するコマンドになります。
+
+なので、もし１つのチームに四人ずつ振り分けたいなら、
+
+  !men 4
+
+と入力してください。
+
+------
+
+This is a command to selected number of members in each teams.
+
+If you want to put 4 people in each teams, then type
+
+  !men 4
+
+
 ## !cup
 友人たちと熱いトーナメント戦をしたい!! だけどいちいちトーナメント表を作るのは面倒くさい!
 そんなあなたに魔法のコマンド!
 以下の画像のように **!cup**と打ってみてください。
 するとGeneralに参加したメンバを参加者としたトーナメント表を自動で作成して貼り付けてくれます。
+
+![cup](image/cup.png)
+
+
+------
+
+This is a a command to make tournament automatically.
+
+Just type **!cup**
+
+Then you will received and tournament image as below.
+
 ![cup](image/cup.png)
 
 ## !cupw
@@ -86,8 +155,20 @@ If you want to know more about it, please move to below!
 ![cupw](image/cupw.png)
 これで面倒な記録も必要なし! いつでもどこでも手軽にトーナメント戦ができるようになります!
 
-# TeamMaker追加方法 / How to invite TeamMaker
-## 家庭用PC(Windows, Macにてインストールする場合)
+-------
+
+In this tournament, you can add match result.
+
+Type
+
+  !cupw {tournament No.} {Round No.} {Winner Id} {Score}
+
+![cupw](image/cupw.png)
+
+
+
+# TeamMaker追加方法 / How to add TeamMaker
+## 家庭用PC(Windows, Macにてインストールする場合)/ Windows Mac Linux
 基本的にはいろいろな[ブログ](https://www.devdungeon.com/content/make-discord-bot-python)で掲載されている情報の通り、DeveloperサイトでBotを作成したあと、
 自分のサーバに追加してください。
 その後、Botのtokenを取得し、TeamSetting.jsonというファイルに追記してください。
@@ -133,7 +214,7 @@ If you want to know more about it, please move to below!
 
 でdiscord.py、PILをインストールしたあと、
 
-    python BotBase.py
+    python TeamMaker.py
 
 を実行すればTeamMaker Botを起動することができます。
 このTeamMaker.pyはどのディレクトリからでも実行ができます。
@@ -146,6 +227,54 @@ If you want to know more about it, please move to below!
 二個目についてはどうやらDiscord.pyがソケット通信を利用していることが原因で、
 Discord.comに接続できないことがあるようです。ちなみに私はMacにAnacondaをインストールして
 無事に動きましたが、あとで説明するRasbianでminicondaを入れた際にはいろいろとネットワークの設定を頑張りましたが、うまく接続させることができませんでした。
+
+---------
+
+To use this bot you need three steps.
+
+First, add discord.py (discord api) and pillow (this is for plotting tournament ).
+
+Open your console and type,
+
+  sudo pip install discord.py
+  sudo pip install pillow
+
+Second, get the token to add this bot to your server.
+
+[Here](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token) has a good introduction.
+
+
+After that, open TeamMaker directory, and edit SampleSetting.json with your favourite editor.
+
+```json : SampleSetting.json
+{
+    "F1ileName":"TeamSetting.json",
+    "Token":"---your token----",
+    "ServerName":"---your server---",
+
+    "MainChannel":"General",
+    "Channel1":"General",
+    "Channel2":"Channel2",
+
+    "Group1":"General",
+    "Group2":"Group2"
+}
+```
+
+```json
+{
+    "FileName":"TeamSetting.json",      // Name of this Setting file
+    "Token":"---your token---",         // Add your token here.
+    "ServerName":"---your server---",   // Add your Discord server name.
+
+    "MainChannel":"General"            // this is the name of voice channel which every member should join before separating to teams or creating tournament
+}
+```
+
+Finally, open this TeamMaker directory with console, and type
+
+  python TeamMaker.py
+
 
 ## 常時稼働環境の作成 / How to run this bot with raspberry pi
 現在、私はこのbotを自分のPCからではなく、Raspberry pi 2B+にて常時稼働させています。
