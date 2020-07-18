@@ -127,7 +127,6 @@ If you want to put 4 people in each teams, then type
   !men 4
 
 
-
 # TeamMaker追加方法 / How to add TeamMaker in your Discord Server
 ## 家庭用PC(Windows, Macにてインストールする場合)
 基本的にはいろいろな[ブログ](https://www.devdungeon.com/content/make-discord-bot-python)で掲載されている情報の通り、DeveloperサイトでBotを作成したあと、
