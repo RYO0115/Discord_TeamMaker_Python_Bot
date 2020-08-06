@@ -273,7 +273,7 @@ After that, open TeamMaker directory, and edit SampleSetting.json with your favo
 
 Finally, open this TeamMaker directory with console, and type
 
-  python TeamMaker.py
+  python BotBase.py
 
 
 ## 常時稼働環境の作成 / How to run this bot with raspberry pi
