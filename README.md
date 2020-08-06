@@ -214,7 +214,7 @@ Type
 
 でdiscord.py、PILをインストールしたあと、
 
-    python TeamMaker.py
+    python BotBase.py
 
 を実行すればTeamMaker Botを起動することができます。
 このTeamMaker.pyはどのディレクトリからでも実行ができます。
@@ -273,7 +273,7 @@ After that, open TeamMaker directory, and edit SampleSetting.json with your favo
 
 Finally, open this TeamMaker directory with console, and type
 
-  python BotBase.py
+    python BotBase.py
 
 
 ## 常時稼働環境の作成 / How to run this bot with raspberry pi
