@@ -1,4 +1,4 @@
-# TeamMaker
+# TeamMaker & TournamentMaker
 Member List Maker Bot for Discord App
 
 
